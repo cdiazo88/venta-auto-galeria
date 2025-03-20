@@ -1,0 +1,251 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.thumbnails-and-medium {
+    flex: 2.5; /* 75% */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thumbnails {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.thumbnail {
+    width: 80px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.thumbnail:hover {
+    border-color: #007BFF;
+}
+
+.medium {
+    margin-top: 20px;
+}
+
+.medium img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.fullsize-image {
+    display: none;
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.description {
+    flex: 1.5; /* 25% */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px;
+    border-left: 1px solid #ccc;
+}
+
+.description h2 {
+    margin-bottom: 10px;
+}
+
+.description p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+#modal-image {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+#close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+#prev-button, #next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#prev-button {
+    left: 20px;
+}
+
+#next-button {
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .gallery-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .thumbnails-and-medium {
+        flex: 1;
+        order: 1;
+    }
+
+    .thumbnails {
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .thumbnail {
+        width: 60px; /* Tamaño más pequeño para miniaturas */
+    }
+
+    .medium {
+        display: none; /* Ocultar la imagen mediana en dispositivos móviles */
+    }
+
+    .description {
+        order: 2;
+        border-left: none;
+        padding: 1em;
+    }
+
+    .description h2 {
+        font-size: 18px;
+        .oferta{
+            font-size: 12px;
+        }
+    }
+
+    .description p {
+        font-size: 14px;
+    }
+
+    .whatsapp-button {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .whatsapp-button img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+    }
+
+    #modal-image {
+        max-width: 90%;
+        max-height: 80%;
+    }
+
+    #close-modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+    }
+
+    #prev-button, #next-button {
+        font-size: 24px;
+    }
+}
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-button img {
+    width: 30px;
+    height: 30px;
+}
