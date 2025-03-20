@@ -1,0 +1,21 @@
+{
+  "name": "responsive-car-gallery",
+  "version": "1.0.0",
+  "description": "A modern and responsive car gallery showcasing full-size images and thumbnails with an offroad style.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src"
+  },
+  "keywords": [
+    "car",
+    "gallery",
+    "responsive",
+    "offroad"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
