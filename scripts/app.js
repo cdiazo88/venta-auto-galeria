@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.getElementById('prev-button');
     const nextButton = document.getElementById('next-button');
     const imageDescription = document.getElementById('image-description');
+    const mediumImage = document.getElementById('medium-image');
 
     let currentIndex = 0;
 
@@ -54,6 +55,60 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (event.key === 'Escape') {
                 modal.classList.add('hidden');
             }
+        }
+    });
+
+    // Función para abrir el modal
+    const openModal = (src) => {
+        modalImage.src = src;
+        modal.classList.remove("hidden");
+    };
+
+    // Función para cerrar el modal
+    const closeModalHandler = () => {
+        modal.classList.add("hidden");
+        modalImage.src = "";
+    };
+
+    // Detectar resolución y agregar eventos
+    const setupEventListeners = () => {
+        if (window.matchMedia("(min-width: 768px)").matches) {
+            // Resolución desktop: agregar evento al medium image
+            mediumImage.addEventListener("click", () => openModal(mediumImage.src));
+        } else {
+            // Resolución mobile: agregar eventos a los thumbnails
+            thumbnails.forEach((thumbnail) => {
+                thumbnail.addEventListener("click", () =>
+                    openModal(thumbnail.dataset.fullsize)
+                );
+            });
+        }
+    };
+
+    // Inicializar eventos
+    setupEventListeners();
+
+    // Reconfigurar eventos al cambiar el tamaño de la ventana
+    window.addEventListener("resize", () => {
+        // Eliminar eventos previos
+        mediumImage.removeEventListener("click", () => openModal(mediumImage.src));
+        thumbnails.forEach((thumbnail) => {
+            thumbnail.removeEventListener("click", () =>
+                openModal(thumbnail.dataset.fullsize)
+            );
+        });
+
+        // Configurar eventos nuevamente
+        setupEventListeners();
+    });
+
+    // Cerrar el modal al hacer clic en el botón de cerrar
+    closeModal.addEventListener("click", closeModalHandler);
+
+    // Cerrar el modal al hacer clic fuera de la imagen
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            closeModalHandler();
         }
     });
 });
