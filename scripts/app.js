@@ -73,10 +73,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Detectar resolución y agregar eventos
     const setupEventListeners = () => {
         if (window.matchMedia("(min-width: 768px)").matches) {
-            // Resolución desktop: agregar evento al medium image
+            // Resolución desktop: actualizar la imagen medium al hacer clic en una thumbnail
+            thumbnails.forEach((thumbnail) => {
+                thumbnail.addEventListener("click", () => {
+                    const mediumSrc = thumbnail.getAttribute("data-medium");
+                    mediumImage.src = mediumSrc; // Actualizar la imagen medium
+                });
+            });
+
+            // Agregar evento para abrir el modal al hacer clic en la imagen medium
             mediumImage.addEventListener("click", () => openModal(mediumImage.src));
         } else {
-            // Resolución mobile: agregar eventos a los thumbnails
+            // Resolución mobile: abrir el modal al hacer clic en una thumbnail
             thumbnails.forEach((thumbnail) => {
                 thumbnail.addEventListener("click", () =>
                     openModal(thumbnail.dataset.fullsize)
@@ -110,5 +118,36 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) {
             closeModalHandler();
         }
+    });
+
+    let touchStartX = 0; // Coordenada X inicial del toque
+    let touchEndX = 0;   // Coordenada X final del toque
+
+    // Detectar el inicio del toque
+    modal.addEventListener("touchstart", (event) => {
+        touchStartX = event.touches[0].clientX; // Guardar la posición inicial del toque
+    });
+
+    // Detectar el movimiento del toque
+    modal.addEventListener("touchmove", (event) => {
+        touchEndX = event.touches[0].clientX; // Actualizar la posición final del toque
+    });
+
+    // Detectar el final del toque y determinar la dirección del swipe
+    modal.addEventListener("touchend", () => {
+        const swipeDistance = touchEndX - touchStartX;
+
+        // Determinar si el swipe es hacia la izquierda o derecha
+        if (swipeDistance > 50) {
+            // Swipe hacia la derecha (imagen anterior)
+            updateModalImage(currentIndex - 1);
+        } else if (swipeDistance < -50) {
+            // Swipe hacia la izquierda (imagen siguiente)
+            updateModalImage(currentIndex + 1);
+        }
+
+        // Reiniciar las coordenadas del toque
+        touchStartX = 0;
+        touchEndX = 0;
     });
 });

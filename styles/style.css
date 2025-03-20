@@ -54,6 +54,17 @@ h1 {
     border-color: #007BFF;
 }
 
+.thumbnails img {
+    width: 100px; /* Tamaño predeterminado */
+    height: auto;
+    margin: 5px;
+    transition: transform 0.3s ease; /* Animación al pasar el mouse */
+}
+
+.thumbnails img:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+}
+
 .medium {
     margin-top: 20px;
 }
@@ -180,6 +191,18 @@ h1 {
         font-size: 14px;
     }
 
+    .thumbnails img {
+        width: 120px; /* Tamaño más pequeño para las thumbnails */
+        height: auto;
+        margin: 8px; /* Espaciado ajustado */
+    }
+
+    .thumbnails {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Centrar las thumbnails */
+    }
+
     .whatsapp-button {
         bottom: 15px;
         right: 15px;
@@ -221,6 +244,40 @@ h1 {
 
     #prev-button, #next-button {
         font-size: 24px;
+    }
+}
+
+/* Estilo para pantallas de escritorio */
+@media (min-width: 769px) {
+    .thumbnails-and-medium {
+        display: flex;
+        flex-direction: column; /* Cambiar a columna */
+        align-items: center; /* Centrar los elementos */
+        width: 100%; /* Asegurar que ocupe todo el ancho disponible */
+    }
+
+    .medium {
+        margin-bottom: 20px; /* Espacio entre la imagen medium y las thumbnails */
+        width: 100%; /* Asegurar que la imagen medium ocupe todo el ancho */
+        text-align: center; /* Centrar la imagen */
+    }
+
+    .medium img {
+        max-width: 80%; /* Ajustar el tamaño máximo de la imagen medium */
+        height: auto;
+    }
+
+    .thumbnails {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Centrar las thumbnails */
+        gap: 10px; /* Espaciado entre las thumbnails */
+        margin-top: 10px; /* Espacio adicional encima de las thumbnails */
+    }
+
+    .thumbnails img {
+        width: 100px; /* Tamaño de las thumbnails */
+        height: auto;
     }
 }
 
