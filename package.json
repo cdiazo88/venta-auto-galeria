@@ -4,7 +4,8 @@
   "description": "A modern and responsive car gallery showcasing full-size images and thumbnails with an offroad style.",
   "main": "src/index.html",
   "scripts": {
-    "start": "live-server src"
+    "start": "live-server src",
+    "deploy": "gh-pages -d src"
   },
   "keywords": [
     "car",
@@ -14,8 +15,9 @@
   ],
   "author": "Your Name",
   "license": "MIT",
-  "dependencies": {},
+  "homepage": "https://cdiazo88.github.io/venta-auto-galeria/",
   "devDependencies": {
-    "live-server": "^1.2.1"
+    "gh-pages": "^6.3.0",
+    "live-server": "^1.2.0"
   }
 }
